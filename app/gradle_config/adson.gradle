@@ -1,0 +1,44 @@
+//Config for Adson App
+apply from: 'gradle_config/adson_network.gradle'
+
+android {
+    def versions_name = versions.name
+
+    signingConfigs {
+        adson_release {
+            storeFile file("../keys/adson_release.jks")
+            storePassword "Nh3BjdcKQGFR"
+            keyAlias "adson"
+            keyPassword "7R2DHKWMh14x"
+        }
+    }
+
+    productFlavors {
+        devAdson {
+            versionName "$versions_name-dev"
+            buildConfigField 'String', 'API_KEY_BUGFENDER', '"WSfDVl7NqGX4budBdRIU4JpQyUZMYTXl"'
+        }
+
+        prodAdson {
+            buildConfigField 'String', 'API_KEY_BUGFENDER', '"Kg7dIggTlMWmYT7jDVQX2dieNv46EH68"'
+        }
+    }
+
+    buildTypes {
+        release {
+            productFlavors.devAdson.signingConfig signingConfigs.adson_release
+            productFlavors.prodAdson.signingConfig signingConfigs.adson_release
+        }
+    }
+
+    sourceSets {
+        devAdson {
+            java.srcDirs = ['src/appAdson/java']
+            res.srcDirs = ['src/appAdson/res']
+        }
+        prodAdson {
+            java.srcDirs = ['src/appAdson/java']
+            res.srcDirs = ['src/appAdson/res']
+        }
+    }
+}

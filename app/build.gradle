@@ -4,9 +4,9 @@ plugins {
     id 'kotlin-android-extensions'
     id 'kotlin-kapt'
     id 'com.github.ben-manes.versions'
-    id 'com.google.gms.google-services'
-    id 'com.google.firebase.crashlytics'
 }
+
+apply from: '../app/gradle_config/adson.gradle'
 
 android {
     compileSdkVersion 29
@@ -21,6 +21,10 @@ android {
 
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
+
+        manifestPlaceholders = [appName: "@string/app_name"]
+
+        buildConfigField 'String', 'API_PROTOKOL', '"https"'
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -38,6 +42,8 @@ android {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 
+    flavorDimensions "default"
+
     buildTypes {
         debug {
             versionNameSuffix "-debug"
@@ -50,6 +56,7 @@ android {
             debuggable false
             minifyEnabled true
             shrinkResources true
+
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -108,10 +115,6 @@ dependencies {
 
     implementation libraries.bugfenderSdk
 
-    implementation libraries.firebase
-    implementation libraries.firebaseAnalytics
-    implementation libraries.firebaseCrashlytics
-
     implementation libraries.androidMaterial
     implementation libraries.constraintLayout
     implementation libraries.navigationFragment
@@ -125,5 +128,4 @@ dependencies {
     // Code generation processors
     kapt processors.daggerCompiler
     kapt processors.daggerAndroidProcessor
-
 }

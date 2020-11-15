@@ -1,0 +1,15 @@
+android {
+    productFlavors {
+        devAdson {
+            def API_SERVER_URL = '"api.dev.adson.com"'
+
+            buildConfigField 'String', 'API_SERVER_URL', API_SERVER_URL
+        }
+
+        prodAdson {
+            def API_SERVER_URL = '"api.adson.com"'
+
+            buildConfigField 'String', 'API_SERVER_URL', API_SERVER_URL
+        }
+    }
+}

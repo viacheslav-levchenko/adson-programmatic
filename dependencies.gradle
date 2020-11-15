@@ -3,8 +3,6 @@ ext.versions = [
 
         kotlinVersion          : '1.4.20-M1',
         versionsGradlePlugin   : '+',
-        googleServices         : '4.3.4',
-        crashlyticsGradlePlugin: '2.3.0',
 
         multidex               : '2.0.1',
         coreKTX                : '1.5.0-alpha04',
@@ -36,8 +34,6 @@ ext.versions = [
 ext.gradlePlugins = [
         versions               : "com.github.ben-manes:gradle-versions-plugin:$versions.versionsGradlePlugin",
         kotlinGradlePlugin     : "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlinVersion",
-        googleServices         : "com.google.gms:google-services:$versions.googleServices",
-        crashlyticsGradlePlugin: "com.google.firebase:firebase-crashlytics-gradle:$versions.crashlyticsGradlePlugin",
         safeAgrs               : "androidx.navigation:navigation-safe-args-gradle-plugin:$versions.navigation",
 ]
 
@@ -48,7 +44,6 @@ ext.libraries = [
 
         coreKtx                 : "androidx.core:core-ktx:$versions.coreKTX",
         preferences             : "androidx.preference:preference:$versions.preferences",
-
 
         constraintLayout        : "androidx.constraintlayout:constraintlayout:$versions.constraintLayout",
         navigationFragment      : "androidx.navigation:navigation-fragment-ktx:$versions.navigation",
