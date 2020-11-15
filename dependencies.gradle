@@ -1,0 +1,85 @@
+ext.versions = [
+        name                   : '1.0',
+
+        kotlinVersion          : '1.4.20-M1',
+        versionsGradlePlugin   : '+',
+        googleServices         : '4.3.4',
+        crashlyticsGradlePlugin: '2.3.0',
+
+        multidex               : '2.0.1',
+        coreKTX                : '1.5.0-alpha04',
+        preferences            : '1.1.1',
+
+        androidMaterial        : '1.3.0-alpha03',
+        constraintLayout       : '2.0.4',
+        navigation             : '2.3.0',
+
+        bugfender              : '3.+',
+
+        firebaseCore           : '18.0.0',
+        firebaseAnalyticsKtx   : '18.0.0',
+        firebaseCrashlyticsKtx : '17.2.2',
+
+        eventbus               : '3.2.0',
+        timber                 : '4.7.1',
+
+        dagger                 : '2.29.1',
+        androidJoda            : '2.10.7.1',
+
+        okHttp                 : '4.10.0-RC1',
+        retrofit               : '2.9.0',
+        jackson                : '2.12.0-rc1',
+
+        coroutines             : '1.3.9',
+]
+
+ext.gradlePlugins = [
+        versions               : "com.github.ben-manes:gradle-versions-plugin:$versions.versionsGradlePlugin",
+        kotlinGradlePlugin     : "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlinVersion",
+        googleServices         : "com.google.gms:google-services:$versions.googleServices",
+        crashlyticsGradlePlugin: "com.google.firebase:firebase-crashlytics-gradle:$versions.crashlyticsGradlePlugin",
+        safeAgrs               : "androidx.navigation:navigation-safe-args-gradle-plugin:$versions.navigation",
+]
+
+ext.libraries = [
+        multidex                : "androidx.multidex:multidex:$versions.multidex",
+        kotlinJDK7              : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlinVersion",
+        coroutines              : "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutines",
+
+        coreKtx                 : "androidx.core:core-ktx:$versions.coreKTX",
+        preferences             : "androidx.preference:preference:$versions.preferences",
+
+
+        constraintLayout        : "androidx.constraintlayout:constraintlayout:$versions.constraintLayout",
+        navigationFragment      : "androidx.navigation:navigation-fragment-ktx:$versions.navigation",
+
+        androidMaterial         : "com.google.android.material:material:$versions.androidMaterial",
+        dagger                  : "com.google.dagger:dagger:$versions.dagger",
+        daggerAndroid           : "com.google.dagger:dagger-android:$versions.dagger",
+        daggerAndroidSupport    : "com.google.dagger:dagger-android-support:$versions.dagger",
+
+        firebase                : "com.google.firebase:firebase-core:$versions.firebaseCore",
+        firebaseAnalytics       : "com.google.firebase:firebase-analytics-ktx:$versions.firebaseAnalyticsKtx",
+        firebaseCrashlytics     : "com.google.firebase:firebase-crashlytics-ktx:$versions.firebaseCrashlyticsKtx",
+
+        androidJoda             : "net.danlew:android.joda:$versions.androidJoda",
+
+        okHttp                  : "com.squareup.okhttp3:okhttp:$versions.okHttp",
+        okHttpLoggingInterceptor: "com.squareup.okhttp3:logging-interceptor:$versions.okHttp",
+        retrofit                : "com.squareup.retrofit2:retrofit:$versions.retrofit",
+        retrofitRxJavaAdapter   : "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit",
+        retrofitJacksonConverter: "com.squareup.retrofit2:converter-jackson:$versions.retrofit",
+        jacksonDataBind         : "com.fasterxml.jackson.core:jackson-databind:$versions.jackson",
+        jacksonDatatypeJoda     : "com.fasterxml.jackson.datatype:jackson-datatype-joda:$versions.jackson",
+
+        bugfenderSdk            : "com.bugfender.sdk:android:$versions.bugfender",
+
+        eventbus                : "org.greenrobot:eventbus:$versions.eventbus",
+        timber                  : "com.jakewharton.timber:timber:$versions.timber",
+]
+
+// Code generation processors
+ext.processors = [
+        daggerCompiler        : "com.google.dagger:dagger-compiler:$versions.dagger",
+        daggerAndroidProcessor: "com.google.dagger:dagger-android-processor:$versions.dagger"
+]

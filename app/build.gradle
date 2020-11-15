@@ -1,0 +1,129 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
+    id 'com.github.ben-manes.versions'
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
+}
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+
+    defaultConfig {
+        applicationId "com.adson.programmatic"
+        minSdkVersion 24
+        targetSdkVersion 29
+        versionName versions.name
+        versionCode 1
+
+        multiDexEnabled true
+        vectorDrawables.useSupportLibrary = true
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+
+    buildTypes {
+        debug {
+            versionNameSuffix "-debug"
+            minifyEnabled false
+            buildConfigField "Boolean", "DEBUG_MODE", "true"
+        }
+
+        release {
+            buildConfigField "Boolean", "DEBUG_MODE", "false"
+            debuggable false
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "${variant.flavorName}-${variant.versionName}(${variant.versionCode}).apk"
+        }
+    }
+
+    lintOptions {
+        warningsAsErrors true
+        abortOnError true // Fail early.
+
+        disable 'RestrictedApi'
+        disable 'GoogleAppIndexingWarning'
+        disable 'InvalidPackage'
+    }
+
+    packagingOptions {
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+    }
+
+    dexOptions {
+        maxProcessCount 4
+        javaMaxHeapSize "4g"
+    }
+}
+
+dependencies {
+    implementation libraries.multidex
+    implementation libraries.kotlinJDK7
+    implementation libraries.coreKtx
+    implementation libraries.preferences
+
+    implementation libraries.coroutines
+
+    implementation libraries.dagger
+    implementation libraries.daggerAndroid
+    implementation libraries.daggerAndroidSupport
+
+    implementation libraries.androidJoda
+
+    implementation libraries.okHttp
+    implementation libraries.retrofit
+    implementation libraries.retrofitJacksonConverter
+    implementation libraries.retrofitRxJavaAdapter
+    implementation libraries.jacksonDataBind
+    implementation(libraries.jacksonDatatypeJoda) {
+        exclude module: 'joda-time'
+    }
+
+    implementation libraries.bugfenderSdk
+
+    implementation libraries.firebase
+    implementation libraries.firebaseAnalytics
+    implementation libraries.firebaseCrashlytics
+
+    implementation libraries.androidMaterial
+    implementation libraries.constraintLayout
+    implementation libraries.navigationFragment
+
+    implementation libraries.timber
+    implementation libraries.eventbus
+
+    // Developer tools (Developer Settings)
+    debugImplementation libraries.okHttpLoggingInterceptor
+
+    // Code generation processors
+    kapt processors.daggerCompiler
+    kapt processors.daggerAndroidProcessor
+
+}
