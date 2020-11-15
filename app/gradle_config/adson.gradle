@@ -16,11 +16,11 @@ android {
     productFlavors {
         devAdson {
             versionName "$versions_name-dev"
-            buildConfigField 'String', 'API_KEY_BUGFENDER', '"WSfDVl7NqGX4budBdRIU4JpQyUZMYTXl"'
+            buildConfigField 'String', 'API_KEY_BUGFENDER', '"o8j3ituizbvMNnaujvKg31FMi0Gmrrs0"'
         }
 
         prodAdson {
-            buildConfigField 'String', 'API_KEY_BUGFENDER', '"Kg7dIggTlMWmYT7jDVQX2dieNv46EH68"'
+            buildConfigField 'String', 'API_KEY_BUGFENDER', '"o8j3ituizbvMNnaujvKg31FMi0Gmrrs0"'
         }
     }
 

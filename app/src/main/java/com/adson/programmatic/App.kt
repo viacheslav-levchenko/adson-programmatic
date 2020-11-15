@@ -2,8 +2,10 @@ package com.adson.programmatic
 
 import android.app.Application
 import android.content.Context
+import android.os.Build
 import android.os.StrictMode
 import androidx.multidex.MultiDex
+import com.bugfender.sdk.Bugfender
 import net.danlew.android.joda.JodaTimeAndroid
 import timber.log.Timber
 
@@ -24,6 +26,7 @@ class App : Application() {
     override fun onCreate() {
         JodaTimeAndroid.init(this)
         setupDebugMode()
+        configureBugfenderLogger()
 
         super.onCreate()
         Timber.i("\n***** ${getString(R.string.app_name)} App build version v.${BuildConfig.VERSION_NAME}(${BuildConfig.VERSION_CODE}) *****\n")
@@ -50,5 +53,13 @@ class App : Application() {
                 .penaltyLog()
                 .penaltyDeath()
                 .build())
+    }
+
+    private fun configureBugfenderLogger() {
+        if (!Build.FINGERPRINT.contains("generic")) {
+            Bugfender.init(this, BuildConfig.API_KEY_BUGFENDER, false)
+            Bugfender.enableCrashReporting()
+            Bugfender.enableLogcatLogging()
+        }
     }
 }
